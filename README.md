@@ -110,5 +110,6 @@ Excel exports include:
 - **Export**: SheetJS (XLSX) for Excel generation
 - **UI Components**: Shadcn/ui component library
 =======
-# Poseidon
->>>>>>> 93d219c162cad3477d766244e0a14478e57598a3
+### Credits:
+
+> - Made by: Nassim Mechat  
