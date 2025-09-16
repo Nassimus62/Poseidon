@@ -109,7 +109,7 @@ Excel exports include:
 - **File Processing**: Papa Parse for CSV handling
 - **Export**: SheetJS (XLSX) for Excel generation
 - **UI Components**: Shadcn/ui component library
-=======
+- 
 ### Credits:
 
 > - Made by: Nassim Mechat  
