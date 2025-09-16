@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Poseidon - Sea-Level Event Interpreter
 
 A sophisticated web application for analyzing sea-level time series data and automatically detecting oceanographic events including tidal phases, storm surges, seiches, and wave patterns.
@@ -109,3 +110,6 @@ Excel exports include:
 - **File Processing**: Papa Parse for CSV handling
 - **Export**: SheetJS (XLSX) for Excel generation
 - **UI Components**: Shadcn/ui component library
+=======
+# Poseidon
+>>>>>>> 93d219c162cad3477d766244e0a14478e57598a3
