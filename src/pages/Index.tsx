@@ -1,23 +1,30 @@
-import React, { useState } from 'react';
-import { FileUpload } from '@/components/poseidon/FileUpload';
-import { AnalysisControls } from '@/components/poseidon/AnalysisControls';
-import { DataVisualization } from '@/components/poseidon/DataVisualization';
-import { EventTimeline } from '@/components/poseidon/EventTimeline';
-import { ExportControls } from '@/components/poseidon/ExportControls';
-import { PoseidonAnalysisEngine } from '@/components/poseidon/AnalysisEngine';
-import { FileData, ProcessedData, DetectedEvent, AnalysisConfig } from '@/types/poseidon';
-import { Waves, Activity } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import React, { useState } from "react";
+import { FileUpload } from "@/components/poseidon/FileUpload";
+import { AnalysisControls } from "@/components/poseidon/AnalysisControls";
+import { DataVisualization } from "@/components/poseidon/DataVisualization";
+import { EventTimeline } from "@/components/poseidon/EventTimeline";
+import { ExportControls } from "@/components/poseidon/ExportControls";
+import { PoseidonAnalysisEngine } from "@/components/poseidon/AnalysisEngine";
+import {
+  FileData,
+  ProcessedData,
+  DetectedEvent,
+  AnalysisConfig,
+} from "@/types/poseidon";
+import { Waves, Activity } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [fileData, setFileData] = useState<FileData | null>(null);
-  const [processedData, setProcessedData] = useState<ProcessedData | null>(null);
+  const [processedData, setProcessedData] = useState<ProcessedData | null>(
+    null
+  );
   const [events, setEvents] = useState<DetectedEvent[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [config, setConfig] = useState<AnalysisConfig>({
-    tideRemovalMethod: 'lowpass',
+    tideRemovalMethod: "lowpass",
     extremeThreshold: 30,
-    confidenceThreshold: 'Medium'
+    confidenceThreshold: "Medium",
   });
 
   const { toast } = useToast();
@@ -26,7 +33,7 @@ const Index = () => {
     setFileData(data);
     setProcessedData(null);
     setEvents([]);
-    
+
     toast({
       title: "File Loaded Successfully",
       description: `${data.filename} loaded with ${data.data.length} data points`,
@@ -37,24 +44,25 @@ const Index = () => {
     if (!fileData?.data) return;
 
     setIsAnalyzing(true);
-    
+
     try {
       const engine = new PoseidonAnalysisEngine(fileData.data, config);
       const results = await engine.runFullAnalysis();
-      
+
       setProcessedData(results.processedData);
       setEvents(results.events);
-      
+
       toast({
         title: "Analysis Complete",
         description: `Detected ${results.events.length} events in the data`,
       });
     } catch (error) {
-      console.error('Analysis failed:', error);
+      console.error("Analysis failed:", error);
       toast({
-        title: "Analysis Failed", 
-        description: "An error occurred during analysis. Please check your data and try again.",
-        variant: "destructive"
+        title: "Analysis Failed",
+        description:
+          "An error occurred during analysis. Please check your data and try again.",
+        variant: "destructive",
       });
     } finally {
       setIsAnalyzing(false);
@@ -72,7 +80,9 @@ const Index = () => {
             </div>
             <div>
               <h1 className="text-3xl font-bold">Poseidon</h1>
-              <p className="text-primary-foreground/90">Sea-Level Event Interpreter</p>
+              <p className="text-primary-foreground/90">
+                Advanced Oceanographic Analysis Tool
+              </p>
             </div>
           </div>
         </div>
@@ -115,11 +125,14 @@ const Index = () => {
         <footer className="mt-16 text-center text-muted-foreground">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Activity className="w-5 h-5" />
-            <span className="font-medium">Advanced Oceanographic Analysis</span>
+            <span className="font-medium">
+              Created by the one and only "Mechat Nassim"
+            </span>
           </div>
           <p className="text-sm">
-            Poseidon uses spectral analysis, envelope detection, and machine learning techniques 
-            to identify tidal phases, storm surges, seiches, and wave patterns in sea-level data.
+            Poseidon uses spectral analysis, envelope detection, and machine
+            learning techniques to identify tidal phases, storm surges, seiches,
+            and wave patterns in sea-level data.
           </p>
         </footer>
       </main>
