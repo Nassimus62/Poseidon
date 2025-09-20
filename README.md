@@ -49,7 +49,7 @@
 ### File Format Requirements
 
 ```
-Timestamp SeaLevel
+Timestamp        SeaLevel
 2024-01-01 00:00 145.2
 2024-01-01 00:01 145.8
 2024-01-01 00:02 146.1
