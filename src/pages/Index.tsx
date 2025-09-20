@@ -125,9 +125,7 @@ const Index = () => {
         <footer className="mt-16 text-center text-muted-foreground">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Activity className="w-5 h-5" />
-            <span className="font-medium">
-              Created by the one and only "Mechat Nassim"
-            </span>
+            <span className="font-medium">Created by "Mechat Nassim"</span>
           </div>
           <p className="text-sm">
             Poseidon uses spectral analysis, envelope detection, and machine
