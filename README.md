@@ -57,7 +57,7 @@ Timestamp SeaLevel
 
 **Supported Formats:**
 
-> - Timestamps: `YYYY-MM-DD HH:MM` or `HH:MM`
+> - Timestamps: `YYYY-MM-DD HH:MM:SS` or `HH:MM`
 > - Sea levels: Numeric values (meters or centimeters)
 > - Recommended: 1-minute interval data
 
