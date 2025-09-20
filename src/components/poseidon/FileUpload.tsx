@@ -22,6 +22,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileLoaded }) => {
     // Handle different timestamp formats
     const formats = [
       /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/, // YYYY-MM-DD HH:MM
+      /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/,
       /^\d{2}:\d{2}$/, // HH:MM (assume today)
       /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/, // ISO format
     ];
