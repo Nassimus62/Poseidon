@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { 
-  ResponsiveContainer, 
-  LineChart, 
-  Line, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ReferenceLine,
   Scatter,
   ScatterChart,
@@ -33,7 +33,7 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
 }) => {
   const chartData = useMemo(() => {
     if (!data) return [];
-    
+
     return data.original.map((point, index) => ({
       timestamp: point.timestamp.getTime(),
       timestampStr: point.timestamp.toLocaleTimeString(),
@@ -55,9 +55,9 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
   }, [events]);
 
   const formatXAxis = (timestamp: number) => {
-    return new Date(timestamp).toLocaleTimeString([], { 
-      hour: '2-digit', 
-      minute: '2-digit' 
+    return new Date(timestamp).toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit'
     });
   };
 
@@ -71,7 +71,7 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
           </p>
           {payload.map((entry: any, index: number) => (
             <p key={index} style={{ color: entry.color }} className="text-sm">
-              {entry.dataKey}: {entry.value.toFixed(2)} cm
+              {entry.dataKey}: {entry.value.toFixed(2)} m
             </p>
           ))}
         </div>
@@ -126,46 +126,46 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                <XAxis 
+                <XAxis
                   dataKey="timestamp"
                   tickFormatter={formatXAxis}
                   type="number"
                   scale="time"
                   domain={['dataMin', 'dataMax']}
                 />
-                <YAxis 
-                  label={{ value: 'Sea Level (cm)', angle: -90, position: 'insideLeft' }}
+                <YAxis
+                  label={{ value: 'Sea Level (m)', angle: -90, position: 'insideLeft' }}
                 />
                 <Tooltip content={<CustomTooltip />} />
                 <Legend />
-                
+
                 {showOriginal && (
-                  <Line 
-                    type="monotone" 
-                    dataKey="original" 
-                    stroke="hsl(var(--primary))" 
+                  <Line
+                    type="monotone"
+                    dataKey="original"
+                    stroke="hsl(var(--primary))"
                     strokeWidth={2}
                     dot={false}
                     name="Original Data"
                   />
                 )}
-                
+
                 {showDetrended && (
-                  <Line 
-                    type="monotone" 
-                    dataKey="detrended" 
-                    stroke="hsl(var(--secondary))" 
+                  <Line
+                    type="monotone"
+                    dataKey="detrended"
+                    stroke="hsl(var(--secondary))"
                     strokeWidth={1.5}
                     dot={false}
                     name="Detrended"
                   />
                 )}
-                
+
                 {showResiduals && (
-                  <Line 
-                    type="monotone" 
-                    dataKey="residuals" 
-                    stroke="hsl(var(--accent))" 
+                  <Line
+                    type="monotone"
+                    dataKey="residuals"
+                    stroke="hsl(var(--accent))"
                     strokeWidth={1}
                     dot={false}
                     name="Residuals"
@@ -189,12 +189,12 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
           <CardContent>
             <div className="h-32">
               <ResponsiveContainer width="100%" height="100%">
-                <ScatterChart 
+                <ScatterChart
                   data={eventMarkers}
                   margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                  <XAxis 
+                  <XAxis
                     dataKey="timestamp"
                     tickFormatter={formatXAxis}
                     type="number"
@@ -203,9 +203,9 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
                   />
                   <YAxis hide />
                   <Tooltip content={<EventTooltip />} />
-                  
-                  <Scatter 
-                    dataKey="y" 
+
+                  <Scatter
+                    dataKey="y"
                     fill="hsl(var(--primary))"
                     shape={(props: any) => {
                       const { cx, cy, payload } = props;
@@ -215,10 +215,10 @@ export const DataVisualization: React.FC<DataVisualizationProps> = ({
                         'Low': 'hsl(var(--destructive))'
                       };
                       return (
-                        <circle 
-                          cx={cx} 
-                          cy={cy} 
-                          r={6} 
+                        <circle
+                          cx={cx}
+                          cy={cy}
+                          r={6}
                           fill={colors[payload.confidence as keyof typeof colors]}
                           stroke="white"
                           strokeWidth={2}

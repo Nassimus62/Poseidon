@@ -41,7 +41,7 @@ export const AnalysisControls: React.FC<AnalysisControlsProps> = ({
           <Label htmlFor="tide-method">Tide Removal Method</Label>
           <Select
             value={config.tideRemovalMethod}
-            onValueChange={(value: 'harmonic' | 'lowpass') => 
+            onValueChange={(value: 'harmonic' | 'lowpass') =>
               updateConfig({ tideRemovalMethod: value })
             }
           >
@@ -54,7 +54,7 @@ export const AnalysisControls: React.FC<AnalysisControlsProps> = ({
             </SelectContent>
           </Select>
           <p className="text-xs text-muted-foreground">
-            {config.tideRemovalMethod === 'lowpass' 
+            {config.tideRemovalMethod === 'lowpass'
               ? 'Uses moving-window polynomial fit to capture multi-hour tides'
               : 'Fits harmonic components to model tidal variations'
             }
@@ -66,18 +66,19 @@ export const AnalysisControls: React.FC<AnalysisControlsProps> = ({
         {/* Thresholds */}
         <div className="space-y-4">
           <h4 className="font-medium">Detection Thresholds</h4>
-          
+
           <div className="space-y-2">
-            <Label htmlFor="extreme-threshold">Extreme Level Threshold (cm)</Label>
+            <Label htmlFor="extreme-threshold">Extreme Level Threshold (m)</Label>
             <Input
               id="extreme-threshold"
               type="number"
+              step="0.01"
               value={config.extremeThreshold}
               onChange={(e) => updateConfig({ extremeThreshold: parseFloat(e.target.value) || 0 })}
-              placeholder="Enter threshold in cm"
+              placeholder="Enter threshold in m"
             />
             <p className="text-xs text-muted-foreground">
-              Levels exceeding ±{config.extremeThreshold}cm from mean will be flagged as extreme
+              Levels exceeding ±{config.extremeThreshold}m from mean will be flagged as extreme
             </p>
           </div>
 
@@ -85,7 +86,7 @@ export const AnalysisControls: React.FC<AnalysisControlsProps> = ({
             <Label htmlFor="confidence-threshold">Minimum Confidence Level</Label>
             <Select
               value={config.confidenceThreshold}
-              onValueChange={(value: 'High' | 'Medium' | 'Low') => 
+              onValueChange={(value: 'High' | 'Medium' | 'Low') =>
                 updateConfig({ confidenceThreshold: value })
               }
             >
@@ -106,7 +107,7 @@ export const AnalysisControls: React.FC<AnalysisControlsProps> = ({
         {/* Time Range Selection */}
         <div className="space-y-4">
           <h4 className="font-medium">Analysis Time Range</h4>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="start-time">Start Time</Label>
@@ -114,25 +115,25 @@ export const AnalysisControls: React.FC<AnalysisControlsProps> = ({
                 id="start-time"
                 type="datetime-local"
                 value={config.startTime?.toISOString().slice(0, 16) || ''}
-                onChange={(e) => updateConfig({ 
-                  startTime: e.target.value ? new Date(e.target.value) : undefined 
+                onChange={(e) => updateConfig({
+                  startTime: e.target.value ? new Date(e.target.value) : undefined
                 })}
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="end-time">End Time</Label>
               <Input
                 id="end-time"
                 type="datetime-local"
                 value={config.endTime?.toISOString().slice(0, 16) || ''}
-                onChange={(e) => updateConfig({ 
-                  endTime: e.target.value ? new Date(e.target.value) : undefined 
+                onChange={(e) => updateConfig({
+                  endTime: e.target.value ? new Date(e.target.value) : undefined
                 })}
               />
             </div>
           </div>
-          
+
           <p className="text-xs text-muted-foreground">
             Leave empty to analyze entire dataset
           </p>

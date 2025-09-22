@@ -23,7 +23,7 @@ const Index = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [config, setConfig] = useState<AnalysisConfig>({
     tideRemovalMethod: "lowpass",
-    extremeThreshold: 30,
+    extremeThreshold: 0.3, // Changed from 30 cm to 0.3 m
     confidenceThreshold: "Medium",
   });
 
